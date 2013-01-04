@@ -1,0 +1,173 @@
+﻿@using System.Text
+@model HandleErrorInfo
+
+@functions {
+    private Stack<Exception> GetExceptionStack()
+{
+    var innerMostException = Model.Exception;
+
+    var exceptionStack = new Stack<Exception>();
+    exceptionStack.Push(innerMostException);
+    while (innerMostException.InnerException != null)
+{
+    innerMostException = innerMostException.InnerException;
+    exceptionStack.Push(innerMostException);
+    }
+    return exceptionStack;
+    }
+    private MvcHtmlString AsSearchLink(object input)
+    {
+        var item = Url.Encode(input.ToString());
+        var url = String.Format(@"https://www.google.com/search?q={0}",item);
+        var link = string.Format(@"<a class='searchlink' href='{0}' target='new'>{1}</a>", url, input);
+
+        var l = new MvcHtmlString(link);
+        return l;
+    }
+}
+<!DOCTYPE html >
+@{
+    var exceptionStack = GetExceptionStack();
+    var innermostException = exceptionStack.First();
+    
+    <html>
+        <head>
+            <title>Error</title>
+            <style>
+                .rootExceptionMessage {
+                    font-size: x-large;
+                    background-color: gainsboro;
+                    width:100%
+                }
+                .rootExceptionType {
+                     font-size: large;
+                    background-color: gainsboro;
+                    width:100%
+                }
+                 .environmentDetails {
+                     border: black;
+                     border-style: solid;
+                 }
+                 .searchlink {
+                     text-decoration: none;
+                     color: black;
+                 }
+            </style>
+        </head>
+        <body>
+            <div class="rootExceptionMessage">
+                @innermostException.Message
+            </div>
+            <div class="rootExceptionType">
+                (@innermostException.GetType())
+            </div>
+ 
+            @foreach (var exception in exceptionStack)
+            {
+                <hr/>
+                <div class="exceptionDetails">
+                    <div class="exceptionType">
+                        @AsSearchLink(exception.GetType())
+                    </div>
+                    <div class="exceptionMessage">
+                         @AsSearchLink(@exception.Message)
+                    </div>
+                    <div class="exceptionSource">
+                         @AsSearchLink(@exception.Source)
+                    </div>
+           
+                    <div class="exceptionStackTrace">
+                        @{
+                            var stackTraceLines = exception.StackTrace.Split(Environment.NewLine.ToCharArray());
+                            var reversedTrace = stackTraceLines.Reverse();
+
+                            foreach (var trace in reversedTrace)
+                            {
+                                <div> @AsSearchLink(@trace)</div>
+                            }
+                        }
+            
+                    </div>
+                </div>
+            }
+            
+            <div class="environmentDetails">
+               
+                <div id="machineName">
+                    @Environment.MachineName
+                </div>
+                <div class="serverUserName">
+                    @Environment.UserName
+                </div>
+                <div class="domainName">
+                    @Environment.UserDomainName
+                </div>
+                <div class="requestingUserName">
+                    @HttpContext.Current.User.Identity.Name
+                </div>
+                <div class="serverTime">
+                    @DateTime.Now
+                </div>  
+                <div class="serverTime">
+                    @DateTime.Now
+                </div>
+                <div class="errorLocation">
+                    <a class="actionUrl" href="@Context.Request.Url">An Error Occured at: @Model.ControllerName/@Model.ActionName</a>
+                </div>
+                  <div class="serverVariables">
+                    @foreach ( var key in HttpContext.Current.Request.ServerVariables.AllKeys)
+                    {
+                        var value = HttpContext.Current.Request.ServerVariables[key];
+                        <div class="serverVariableValue">@key: @value</div>
+
+                    }
+                </div>
+                @*  <div class="requestingUserName">
+                     <p>
+                         @Server.UrlDecode(HttpContext.Current.Request.Form)
+                        
+                         // Get Log file button
+                         // Potentially grab last 10 lines. simple text grab, nothing intelligent
+                     </p>
+                 </div>*@
+                
+            </div>
+            <div class="requestDetails">
+                <div class="contentType">
+                    @HttpContext.Current.Request.ContentType
+                </div>
+                <div class="contentEncoding">
+                    @HttpContext.Current.Request.ContentEncoding
+                </div>
+                 <div class="requestMethod">
+                    @HttpContext.Current.Request.HttpMethod
+                </div>
+                <div class="headers">
+                    @foreach ( var key in HttpContext.Current.Request.Headers.AllKeys)
+                    {
+                        var value = HttpContext.Current.Request.Headers[key];
+                        <div class="headerValue">@key: @value</div>
+
+                    }
+                </div>
+                <div class="cookies">
+                    @foreach ( var key in HttpContext.Current.Request.Cookies.AllKeys)
+                    {
+                        var value = HttpContext.Current.Request.Cookies[key];
+                        <div class="cookieValue">@key: @value</div>
+
+                    }
+                </div>
+                   <div class="cookies">
+                    @foreach ( var key in HttpContext.Current.Request.Form.AllKeys)
+                    {
+                        var value = HttpContext.Current.Request.Form[key];
+                        <div class="formValue">@key: @value</div>
+
+                    }
+                </div>
+
+            </div>
+        </body>
+    </html>
+}
