@@ -1,4 +1,4 @@
-﻿@using System.Text
+﻿@using MvcApplication1.Errors
 @model HandleErrorInfo
 
 @functions {
@@ -29,7 +29,8 @@
 @{
     var exceptionStack = GetExceptionStack();
     var innermostException = exceptionStack.First();
-    
+    var factory = new ErrorPageFactory();
+    var model = factory.Build(Model);
     <html>
         <head>
             <title>Error</title>
