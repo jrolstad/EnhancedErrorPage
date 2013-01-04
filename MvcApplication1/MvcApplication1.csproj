@@ -99,11 +99,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Errors\ErrorPageFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DataEntity.cs" />
+    <Compile Include="Models\Errors\ErrorViewModel.cs" />
+    <Compile Include="Models\Errors\ExceptionViewModel.cs" />
+    <Compile Include="Models\Errors\RequestValueViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
