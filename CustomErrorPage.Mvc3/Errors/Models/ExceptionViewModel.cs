@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MvcApplication1.Models.Errors
+namespace CustomErrorPage.Mvc3.Errors.Models
 {
     public class ExceptionViewModel
     {
@@ -11,7 +11,7 @@ namespace MvcApplication1.Models.Errors
 
         public string Source { get; set; }
 
-        public ICollection<string> StackTrace { get; set; }
+        public IEnumerable<string> StackTrace { get; set; }
 
         public string SearchUrl { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿namespace MvcApplication1.Models.Errors
+﻿namespace CustomErrorPage.Mvc3.Errors.Models
 {
     public class RequestValueViewModel
     {

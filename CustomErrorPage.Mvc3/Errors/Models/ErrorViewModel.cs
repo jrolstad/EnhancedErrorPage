@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MvcApplication1.Models.Errors
+namespace CustomErrorPage.Mvc3.Errors.Models
 {
     public class ErrorViewModel
     {
@@ -9,7 +9,7 @@ namespace MvcApplication1.Models.Errors
 
         public ExceptionViewModel RootException { get; set; }
 
-        public ICollection<ExceptionViewModel> Exceptions { get; set; }
+        public Stack<ExceptionViewModel> Exceptions { get; set; }
 
         public string MachineName { get; set; }
 
