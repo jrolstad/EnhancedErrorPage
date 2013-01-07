@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using CustomErrorPage.Mvc3.Errors;
@@ -22,9 +23,9 @@ namespace CustomErrorPage.Mvc.Test.Errors
             var exception = new Exception("something bad", innerException);
 
             _error = new HandleErrorInfo(exception, "some controller", "some action");
-            
+
             _request = new HttpRequest("","http://github.com","");
-            
+
             var factory = new ErrorPageFactory(_request);
 
             _result = factory.Build(_error);

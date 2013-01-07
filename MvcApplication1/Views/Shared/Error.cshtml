@@ -106,7 +106,8 @@
                 <div class="errorLocation">
                     <a class="actionUrl" href="@Context.Request.Url">An Error Occured at: @viewModel.ControllerName/@Model.ActionName</a>
                 </div>
-                  <div class="serverVariables">
+                <div class="serverVariables">
+                    Server Variables
                     @foreach ( var item in viewModel.RequestServerVariables)
                     {
                         <div class="serverVariableValue">@item.Name: @item.Value</div>
@@ -125,20 +126,23 @@
                     @viewModel.RequestHttpMethod
                 </div>
                 <div class="headers">
+                    Headers:
                     @foreach ( var item in viewModel.RequestHeaderValues)
                     {
-                       <div class="headerValue">@item.Name: @item.Value</div>
+                        <div class="headerValue">@item.Name: @item.Value</div>
 
                     }
                 </div>
                 <div class="cookies">
+                    Cookies:
                     @foreach ( var item in viewModel.RequestCookies)
                     {
                         <div class="cookieValue">@item.Name: @item.Value</div>
 
                     }
                 </div>
-                   <div class="cookies">
+                <div class="form">
+                    Form:
                     @foreach ( var item in viewModel.RequestFormValues)
                     {
                         <div class="formValue">@item.Name: @item.Value</div>
