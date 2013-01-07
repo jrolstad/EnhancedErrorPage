@@ -33,8 +33,10 @@ namespace CustomErrorPage.Mvc3.Errors.Models
  
         public IEnumerable<RequestValueViewModel> RequestCookies { get; set; } 
 
-        public IEnumerable<RequestValueViewModel> RequestFormValues { get; set; } 
+        public IEnumerable<RequestValueViewModel> RequestFormValues { get; set; }
 
-        
+        public IEnumerable<RequestValueViewModel> RequestHeaderValues { get; set; }
+
+        public string RequestingUserName { get; set; }
     }
 }

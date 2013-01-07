@@ -30,7 +30,7 @@
     var exceptionStack = GetExceptionStack();
     var innermostException = exceptionStack.First();
     var factory = new ErrorPageFactory(HttpContext.Current.Request);
-    var model = factory.Build(Model);
+    var viewModel = factory.Build(Model);
     <html>
         <head>
             <title>Error</title>
@@ -57,32 +57,29 @@
         </head>
         <body>
             <div class="rootExceptionMessage">
-                @innermostException.Message
+                @viewModel.RootException.Message
             </div>
             <div class="rootExceptionType">
-                (@innermostException.GetType())
+                (@viewModel.RootException.Type)
             </div>
  
-            @foreach (var exception in exceptionStack)
+            @foreach (var exception in viewModel.Exceptions)
             {
                 <hr/>
                 <div class="exceptionDetails">
                     <div class="exceptionType">
-                        @AsSearchLink(exception.GetType())
+                        @AsSearchLink(exception.Type)
                     </div>
                     <div class="exceptionMessage">
-                         @AsSearchLink(@exception.Message)
+                         @AsSearchLink(exception.Message)
                     </div>
                     <div class="exceptionSource">
-                         @AsSearchLink(@exception.Source)
+                         @AsSearchLink(exception.Source)
                     </div>
            
                     <div class="exceptionStackTrace">
                         @{
-                            var stackTraceLines = exception.StackTrace.Split(Environment.NewLine.ToCharArray());
-                            var reversedTrace = stackTraceLines.Reverse();
-
-                            foreach (var trace in reversedTrace)
+                            foreach (var trace in exception.StackTrace)
                             {
                                 <div> @AsSearchLink(@trace)</div>
                             }
@@ -95,75 +92,56 @@
             <div class="environmentDetails">
                
                 <div id="machineName">
-                    @Environment.MachineName
+                    @viewModel.MachineName
                 </div>
                 <div class="serverUserName">
-                    @Environment.UserName
-                </div>
-                <div class="domainName">
-                    @Environment.UserDomainName
+                     @viewModel.ServerUserName
                 </div>
                 <div class="requestingUserName">
-                    @HttpContext.Current.User.Identity.Name
+                     @viewModel.RequestingUserName
                 </div>
                 <div class="serverTime">
-                    @DateTime.Now
+                    @viewModel.ServerTime
                 </div>  
-                <div class="serverTime">
-                    @DateTime.Now
-                </div>
                 <div class="errorLocation">
-                    <a class="actionUrl" href="@Context.Request.Url">An Error Occured at: @Model.ControllerName/@Model.ActionName</a>
+                    <a class="actionUrl" href="@Context.Request.Url">An Error Occured at: @viewModel.ControllerName/@Model.ActionName</a>
                 </div>
                   <div class="serverVariables">
-                    @foreach ( var key in HttpContext.Current.Request.ServerVariables.AllKeys)
+                    @foreach ( var item in viewModel.RequestServerVariables)
                     {
-                        var value = HttpContext.Current.Request.ServerVariables[key];
-                        <div class="serverVariableValue">@key: @value</div>
+                        <div class="serverVariableValue">@item.Name: @item.Value</div>
 
                     }
                 </div>
-                @*  <div class="requestingUserName">
-                     <p>
-                         @Server.UrlDecode(HttpContext.Current.Request.Form)
-                        
-                         // Get Log file button
-                         // Potentially grab last 10 lines. simple text grab, nothing intelligent
-                     </p>
-                 </div>*@
-                
             </div>
             <div class="requestDetails">
                 <div class="contentType">
-                    @HttpContext.Current.Request.ContentType
+                    @viewModel.RequestContentType
                 </div>
                 <div class="contentEncoding">
-                    @HttpContext.Current.Request.ContentEncoding
+                    @viewModel.RequestContentEncoding
                 </div>
                  <div class="requestMethod">
-                    @HttpContext.Current.Request.HttpMethod
+                    @viewModel.RequestHttpMethod
                 </div>
                 <div class="headers">
-                    @foreach ( var key in HttpContext.Current.Request.Headers.AllKeys)
+                    @foreach ( var item in viewModel.RequestHeaderValues)
                     {
-                        var value = HttpContext.Current.Request.Headers[key];
-                        <div class="headerValue">@key: @value</div>
+                       <div class="headerValue">@item.Name: @item.Value</div>
 
                     }
                 </div>
                 <div class="cookies">
-                    @foreach ( var key in HttpContext.Current.Request.Cookies.AllKeys)
+                    @foreach ( var item in viewModel.RequestCookies)
                     {
-                        var value = HttpContext.Current.Request.Cookies[key];
-                        <div class="cookieValue">@key: @value</div>
+                        <div class="cookieValue">@item.Name: @item.Value</div>
 
                     }
                 </div>
                    <div class="cookies">
-                    @foreach ( var key in HttpContext.Current.Request.Form.AllKeys)
+                    @foreach ( var item in viewModel.RequestFormValues)
                     {
-                        var value = HttpContext.Current.Request.Form[key];
-                        <div class="formValue">@key: @value</div>
+                        <div class="formValue">@item.Name: @item.Value</div>
 
                     }
                 </div>

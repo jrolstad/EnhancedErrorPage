@@ -24,6 +24,15 @@ namespace CustomErrorPage.Mvc3.Errors
             var cookies = GetCookies(_request);
             var formValues = GetFormValues(_request);
             var serverVariables = GetServerVariables(_request);
+            var headerValues = GetHeaderValues(_request);
+
+            var requestContentEncoding = GetContentEncoding();
+            var requestingUrl = _request.Url.AbsolutePath;
+
+            var requestingUserName = GetRequestingUserName();
+
+            var serverUserName = string.Format(@"{0}\{1}",Environment.UserDomainName, Environment.UserName);
+            var machineName = Environment.MachineName;
 
             var model = new ErrorViewModel
                 {
@@ -31,21 +40,57 @@ namespace CustomErrorPage.Mvc3.Errors
                     ActionName = error.ActionName,
                     ControllerName = error.ControllerName,
                     Exceptions = exceptions,
-                    MachineName = Environment.MachineName,
-                    RequestContentEncoding = _request.ContentEncoding.EncodingName,
+                    MachineName = machineName,
+                    RequestContentEncoding = requestContentEncoding,
                     RequestContentType = _request.ContentType,
                     RequestCookies = cookies,
                     RequestFormValues = formValues,
+                    RequestHeaderValues = headerValues,
                     RequestHttpMethod = _request.HttpMethod,
                     RequestServerVariables = serverVariables,
                     RootException = rootException,
-                    ServerUserName = Environment.UserName,
+                    ServerUserName = serverUserName,
                     ServerTime = DateTime.Now,
-                    RequestingUrl = _request.Url.AbsolutePath
+                    RequestingUrl = requestingUrl,
+                    RequestingUserName = requestingUserName
 
                 };
 
             return model;
+        }
+
+        private string GetRequestingUserName()
+        {
+            try
+            {
+                var name = _request.RequestContext.HttpContext.User.Identity.Name;
+
+                return name;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        private IEnumerable<RequestValueViewModel> GetHeaderValues(HttpRequest request)
+        {
+            return from key in request.Headers.AllKeys
+                   let value = request.Headers[key]
+                   select new RequestValueViewModel { Name = key, Value = value };
+        }
+
+        private string GetContentEncoding()
+        {
+            try
+            {
+                return _request.ContentEncoding.EncodingName;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+            
         }
 
         private Stack<ExceptionViewModel> GetExceptionStack(Exception exception)
@@ -79,6 +124,9 @@ namespace CustomErrorPage.Mvc3.Errors
 
         private IEnumerable<string> ReverseStackTrace(string stackTrace)
         {
+            if (string.IsNullOrWhiteSpace(stackTrace))
+                return new string[0];
+
             var stackTraceLines = stackTrace.Split(Environment.NewLine.ToCharArray());
             var reversedTrace = stackTraceLines.Reverse();
 
