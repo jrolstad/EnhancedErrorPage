@@ -40,6 +40,20 @@
                     padding-left: 10px;
                     padding-right: 10px;
                 }
+                .errorDetailTable tr:nth-child(even) {
+                    background-color: lightcyan;
+                }
+                .errorDetailTable .valueName {
+                    font-style: italic;
+                }
+                .exceptionType {
+                    font-size: large;
+                    font-weight: bold;
+                }
+                .exceptionMessage {
+                    font-size: medium;
+                    font-style: italic;
+                }
                 #exceptions {
                     background-color: rgb(255, 255, 148);
                 }
@@ -68,22 +82,24 @@
                         @foreach (var exception in viewModel.Exceptions)
                         {
                             <hr/>
-                            <div class="exceptionDetails">
+                            <div>
                                 <div class="exceptionType">
                                     <a class="searchlink" target="new" href="@exception.Type.SearchUrl">@exception.Type.Text</a>
                                 </div>
                                 <div class="exceptionMessage">
                                     <a class="searchlink" target="new" href="@exception.Message.SearchUrl">@exception.Message.Text</a>
                                 </div>
-                                <div class="exceptionSource">
+                                <div>
                                     <a class="searchlink"target="new" href="@exception.Source.SearchUrl">@exception.Source.Text</a>
                                 </div>
            
-                                <div class="exceptionStackTrace">
+                                <div>
                                     @{
                                         foreach (var trace in exception.StackTrace)
                                         {
-                                            <a class="searchlink" target="new" href="@trace.SearchUrl">@trace.Text</a>
+                                            <div>
+                                                <a class="searchlink" target="new" href="@trace.SearchUrl">@trace.Text</a>
+                                            </div>
                                         }
                                     }
             
@@ -104,19 +120,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Machine Name</td>
+                                    <td class="valueName">Machine Name</td>
                                     <td>@viewModel.MachineName</td>
                                 </tr>
                                 <tr>
-                                    <td>User Name</td>
+                                    <td class="valueName">User Name</td>
                                     <td>@viewModel.ServerUserName</td>
                                 </tr>
                                 <tr>
-                                    <td>Requesting User Name</td>
+                                    <td class="valueName">Requesting User Name</td>
                                     <td>@viewModel.RequestingUserName</td>
                                 </tr>
                                 <tr>
-                                    <td>Server Time</td>
+                                    <td class="valueName">Server Time</td>
                                     <td>@viewModel.ServerTime</td>
                                 </tr>
                             </tbody>
@@ -138,7 +154,7 @@
                                 @foreach (var item in viewModel.RequestServerVariables)
                                 {
                                     <tr>
-                                        <td>@item.Name</td>
+                                        <td class="valueName">@item.Name</td>
                                         <td>@item.Value</td>
                                     </tr>
 
@@ -159,19 +175,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Error At</td>
-                                    <td> <a class="actionUrl" href="@viewModel.RequestingUrl">@viewModel.ControllerName/@Model.ActionName</a></td>
+                                    <td class="valueName">Error At</td>
+                                    <td> <a href="@viewModel.RequestingUrl">@viewModel.ControllerName/@Model.ActionName</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Content Type</td>
+                                    <td class="valueName">Content Type</td>
                                     <td> @viewModel.RequestContentType</td>
                                 </tr>
                                 <tr>
-                                    <td>Content Encoding</td>
+                                    <td class="valueName">Content Encoding</td>
                                     <td> @viewModel.RequestContentEncoding</td>
                                 </tr>
                                 <tr>
-                                    <td>Request Method</td>
+                                    <td class="valueName">Request Method</td>
                                     <td> @viewModel.RequestHttpMethod</td>
                                 </tr>
                             </tbody>
@@ -192,7 +208,7 @@
                                 @foreach ( var item in viewModel.RequestHeaderValues)
                                 {
                                     <tr>
-                                        <td>@item.Name</td>
+                                        <td class="valueName">@item.Name</td>
                                         <td>@item.Value</td>
                                     </tr>
                                 }
@@ -214,7 +230,7 @@
                                 @foreach ( var item in viewModel.RequestCookies)
                                 {
                                     <tr>
-                                        <td>@item.Name</td>
+                                        <td class="valueName">@item.Name</td>
                                         <td>@item.Value</td>
                                     </tr>
                                 }
@@ -242,7 +258,7 @@
                                     @foreach (var item in viewModel.RequestFormValues)
                                     {
                                         <tr>
-                                            <td>@item.Name</td>
+                                            <td class="valueName">@item.Name</td>
                                             <td>@item.Value</td>
                                         </tr>
                                     }

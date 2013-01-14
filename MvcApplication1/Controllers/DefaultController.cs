@@ -12,29 +12,24 @@ namespace MvcApplication1.Controllers
         public ActionResult Index()
         {
 
-            using (var connection = new SqlConnection(@"Server=sea-2400-02\dev;Database=invalidDB;Trusted_Connection=True;"))
-            {
+           
+
                 try
                 {
-                    try
-                    {
-                        var value1 = 1;
-                        var value2 = 0;
+                    var value1 = 1;
+                    var value2 = 0;
 
-                        var result = value1/value2;
-                    }
-                    catch (Exception e)
-                    {
-                        var newException = new ApplicationException("oh oh, what happend?", e);
-                        throw newException;
-                    }
-                   
+                    var result = value1/value2;
                 }
-                finally
+                catch (Exception e)
                 {
-                    connection.Close();
+                    var newException = new ApplicationException("oh oh, what happend?", e);
+                    throw newException;
                 }
-            }
+                   
+                
+
+            
             return View();
         }
 
