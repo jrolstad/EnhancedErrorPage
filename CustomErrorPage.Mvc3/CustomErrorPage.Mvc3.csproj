@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Errors\ErrorPageFactory.cs" />
     <Compile Include="Errors\Models\ErrorViewModel.cs" />
     <Compile Include="Errors\Models\ExceptionViewModel.cs" />
