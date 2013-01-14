@@ -86,7 +86,7 @@ namespace CustomErrorPage.Mvc3.Errors
             {
                 return _request.ContentEncoding.EncodingName;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "";
             }

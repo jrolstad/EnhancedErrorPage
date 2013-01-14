@@ -17,7 +17,9 @@ namespace CustomErrorPage.Mvc3.Errors.Models
             get
             {
                 var encodedText = HttpUtility.UrlEncode(Text);
-                var url = String.Format(@"https://www.google.com/search?q={0}",encodedText);
+                const string googleSearchUrl = @"https://www.google.com/search?q={0}";
+
+                var url = String.Format(googleSearchUrl,encodedText);
 
                 return url;
             }
