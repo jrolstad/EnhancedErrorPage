@@ -1,39 +1,14 @@
-﻿@using CustomErrorPage.Mvc3.Errors
+﻿
+
 @model HandleErrorInfo
 
-@functions {
-    private Stack<Exception> GetExceptionStack()
-{
-    var innerMostException = Model.Exception;
-
-    var exceptionStack = new Stack<Exception>();
-    exceptionStack.Push(innerMostException);
-    while (innerMostException.InnerException != null)
-{
-    innerMostException = innerMostException.InnerException;
-    exceptionStack.Push(innerMostException);
-    }
-    return exceptionStack;
-    }
-    private MvcHtmlString AsSearchLink(object input)
-    {
-        var item = Url.Encode(input.ToString());
-        var url = String.Format(@"https://www.google.com/search?q={0}",item);
-        var link = string.Format(@"<a class='searchlink' href='{0}' target='new'>{1}</a>", url, input);
-
-        var l = new MvcHtmlString(link);
-        return l;
-    }
-}
 <!DOCTYPE html >
 @{
-    var exceptionStack = GetExceptionStack();
-    var innermostException = exceptionStack.First();
-    var factory = new ErrorPageFactory(HttpContext.Current.Request);
+    var factory = new CustomErrorPage.Mvc3.Errors.ErrorPageFactory(HttpContext.Current.Request);
     var viewModel = factory.Build(Model);
     <html>
         <head>
-            <title>Error</title>
+            <title>@viewModel.PageTitle</title>
             <style>
                 .rootExceptionMessage {
                     font-size: x-large;
@@ -53,6 +28,9 @@
                      text-decoration: none;
                      color: black;
                  }
+                 .searchlink:hover {
+                     text-decoration: underline;
+                 }
             </style>
         </head>
         <body>
@@ -68,20 +46,20 @@
                 <hr/>
                 <div class="exceptionDetails">
                     <div class="exceptionType">
-                        @AsSearchLink(exception.Type)
+                        <a class="searchlink" target="new" href="@exception.Type.SearchUrl">@exception.Type.Text</a>
                     </div>
                     <div class="exceptionMessage">
-                         @AsSearchLink(exception.Message)
+                        <a class="searchlink" target="new" href="@exception.Message.SearchUrl">@exception.Message.Text</a>
                     </div>
                     <div class="exceptionSource">
-                         @AsSearchLink(exception.Source)
+                         <a class="searchlink"target="new" href="@exception.Source.SearchUrl">@exception.Source.Text</a>
                     </div>
            
                     <div class="exceptionStackTrace">
                         @{
                             foreach (var trace in exception.StackTrace)
                             {
-                                <div> @AsSearchLink(@trace)</div>
+                                <a class="searchlink" target="new" href="@trace.SearchUrl">@trace.Text</a>
                             }
                         }
             
@@ -104,7 +82,7 @@
                     @viewModel.ServerTime
                 </div>  
                 <div class="errorLocation">
-                    <a class="actionUrl" href="@Context.Request.Url">An Error Occured at: @viewModel.ControllerName/@Model.ActionName</a>
+                    <a class="actionUrl" href="@viewModel.RequestingUrl">An Error Occured at: @viewModel.ControllerName/@Model.ActionName</a>
                 </div>
                 <div class="serverVariables">
                     Server Variables

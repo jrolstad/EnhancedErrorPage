@@ -116,8 +116,8 @@ namespace CustomErrorPage.Mvc3.Errors
             return new ExceptionViewModel
                 {
                     Message = new SearchableItem(exception.Message),
-                    Source = exception.Source,
-                    Type = exception.GetType(),
+                    Source = new SearchableItem(exception.Source),
+                    Type = new SearchableItem(exception.GetType().ToString()),
                     StackTrace = ReverseStackTrace(exception.StackTrace)
                 };
         }
