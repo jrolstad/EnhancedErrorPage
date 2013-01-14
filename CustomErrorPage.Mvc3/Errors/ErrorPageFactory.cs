@@ -151,7 +151,7 @@ namespace CustomErrorPage.Mvc3.Errors
         {
             return from key in request.Cookies.AllKeys
                    let value = request.Cookies[key]
-                   select new RequestValueViewModel {Name = key, Value = value.ToString()}
+                   select new RequestValueViewModel {Name = key, Value = value.Value}
                 ;
         }
     }
