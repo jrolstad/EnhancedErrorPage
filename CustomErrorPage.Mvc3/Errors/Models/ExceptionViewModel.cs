@@ -7,12 +7,10 @@ namespace CustomErrorPage.Mvc3.Errors.Models
     {
         public Type Type { get; set; }
 
-        public string Message { get; set; }
+        public SearchableItem Message { get; set; }
 
         public string Source { get; set; }
 
-        public IEnumerable<string> StackTrace { get; set; }
-
-        public string SearchUrl { get; set; }
+        public IEnumerable<SearchableItem> StackTrace { get; set; }
     }
 }

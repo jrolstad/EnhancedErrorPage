@@ -115,22 +115,22 @@ namespace CustomErrorPage.Mvc3.Errors
         {
             return new ExceptionViewModel
                 {
-                    Message = exception.Message,
+                    Message = new SearchableItem(exception.Message),
                     Source = exception.Source,
                     Type = exception.GetType(),
                     StackTrace = ReverseStackTrace(exception.StackTrace)
                 };
         }
 
-        private IEnumerable<string> ReverseStackTrace(string stackTrace)
+        private IEnumerable<SearchableItem> ReverseStackTrace(string stackTrace)
         {
             if (string.IsNullOrWhiteSpace(stackTrace))
-                return new string[0];
+                return new SearchableItem[0];
 
             var stackTraceLines = stackTrace.Split(Environment.NewLine.ToCharArray());
             var reversedTrace = stackTraceLines.Reverse();
 
-            return reversedTrace;
+            return reversedTrace.Select(t => new SearchableItem(t));
         }
 
         private IEnumerable<RequestValueViewModel> GetServerVariables(HttpRequest request)

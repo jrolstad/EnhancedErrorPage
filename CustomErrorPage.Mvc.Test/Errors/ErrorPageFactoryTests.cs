@@ -52,7 +52,7 @@ namespace CustomErrorPage.Mvc.Test.Errors
         public void Then_all_exceptions_are_obtained()
         {
             // Assert
-            Assert.That(_result.Exceptions.Select(e=>e.Message).ToArray(),Is.EquivalentTo(new[]{_error.Exception.Message,_error.Exception.InnerException.Message}));
+            Assert.That(_result.Exceptions.Select(e=>e.Message.Text).ToArray(),Is.EquivalentTo(new[]{_error.Exception.Message,_error.Exception.InnerException.Message}));
         }
 
 
@@ -60,7 +60,7 @@ namespace CustomErrorPage.Mvc.Test.Errors
         public void Then_the_root_exception_is_found()
         {
             // Assert
-            Assert.That(_result.RootException.Message,Is.SameAs(_error.Exception.InnerException.Message));
+            Assert.That(_result.RootException.Message.Text,Is.SameAs(_error.Exception.InnerException.Message));
         }
 
         [Test]
