@@ -246,32 +246,25 @@
                 </li>
                 <li>
                     Form Values
-                    @if (!viewModel.RequestFormValues.Any())
-                    {
-                        <div>None</div>
-                    }
-                    else
-                    {
-                        <div>
-                            <table class="errorDetailTable">
-                                <thead>
+                    <div>
+                        <table class="errorDetailTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in viewModel.RequestFormValues)
+                                {
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Value</th>
+                                        <td class="valueName">@item.Name</td>
+                                        <td>@item.Value</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in viewModel.RequestFormValues)
-                                    {
-                                        <tr>
-                                            <td class="valueName">@item.Name</td>
-                                            <td>@item.Value</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </li>
             </ul>
             
