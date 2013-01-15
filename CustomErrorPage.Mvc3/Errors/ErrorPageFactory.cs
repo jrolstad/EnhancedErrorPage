@@ -7,8 +7,6 @@ using CustomErrorPage.Mvc3.Errors.Models;
 
 namespace CustomErrorPage.Mvc3.Errors
 {
-    #region Factory
-
     public class ErrorPageFactory
     {
         private readonly HttpRequest _request;
@@ -157,10 +155,4 @@ namespace CustomErrorPage.Mvc3.Errors
                 ;
         }
     }
-
-    #endregion 
-
-    #region Models
-
-    #endregion
 }
