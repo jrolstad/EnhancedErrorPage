@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using Directus.CustomErrorPage.Mvc3.Errors;
-using Directus.CustomErrorPage.Mvc3.Errors.Models;
+using EnhancedErrorPage.Mvc3.Errors;
+using EnhancedErrorPage.Mvc3.Errors.Models;
 using NUnit.Framework;
 
-namespace Directus.CustomErrorPage.Mvc.Test.Errors
+namespace EnhancedErrorPage.Mvc3.Test.Errors
 {
     [TestFixture]
     public class ErrorPageFactoryTests

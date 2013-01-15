@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C7212216-0DD0-4470-A4B7-5FE79D91601F}</ProjectGuid>
+    <ProjectGuid>{6B9CEEDB-7157-4204-86BE-F43B2F686735}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomErrorPage.Mvc.Test</RootNamespace>
-    <AssemblyName>CustomErrorPage.Mvc.Test</AssemblyName>
+    <RootNamespace>EnhancedErrorPage.Mvc3.Test</RootNamespace>
+    <AssemblyName>EnhancedErrorPage.Mvc3.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -41,7 +41,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -79,13 +78,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\EnhancedErrorPage.Mvc3\EnhancedErrorPage.Mvc3.csproj">
+      <Project>{47a16df9-24a5-4bf3-b6f2-c26046f05a1b}</Project>
+      <Name>EnhancedErrorPage.Mvc3</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomErrorPage.Mvc3\CustomErrorPage.Mvc3.csproj">
-      <Project>{0F4B5C94-0A8A-47CB-B73D-8F6853C33559}</Project>
-      <Name>CustomErrorPage.Mvc3</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

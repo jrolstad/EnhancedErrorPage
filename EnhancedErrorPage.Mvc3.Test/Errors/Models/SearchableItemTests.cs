@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.Web;
-using Directus.CustomErrorPage.Mvc3.Errors.Models;
+using EnhancedErrorPage.Mvc3.Errors.Models;
 using NUnit.Framework;
 
-namespace Directus.CustomErrorPage.Mvc.Test.Errors.Models
+namespace EnhancedErrorPage.Mvc3.Test.Errors.Models
 {
     [TestFixture]
     public class SearchableItemTests

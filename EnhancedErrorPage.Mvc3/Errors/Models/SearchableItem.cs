@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Web;
 
-namespace Directus.CustomErrorPage.Mvc3.Errors.Models
+namespace EnhancedErrorPage.Mvc3.Errors.Models
 {
     public class SearchableItem
     {

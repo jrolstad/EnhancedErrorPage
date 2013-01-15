@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Directus.CustomErrorPage.Mvc3.Errors.Models;
+using EnhancedErrorPage.Mvc3.Errors.Models;
 
-namespace Directus.CustomErrorPage.Mvc3.Errors
+namespace EnhancedErrorPage.Mvc3.Errors
 {
     public class ErrorPageFactory
     {

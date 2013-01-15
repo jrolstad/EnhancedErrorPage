@@ -1,8 +1,8 @@
-﻿@model HandleErrorInfo
+@model System.Web.Mvc.HandleErrorInfo
 
 <!DOCTYPE html >
 @{
-    var factory = new Directus.CustomErrorPage.Mvc3.Errors.ErrorPageFactory(HttpContext.Current.Request);
+    var factory = new EnhancedErrorPage.Mvc3.Errors.ErrorPageFactory(HttpContext.Current.Request);
     var viewModel = factory.Build(Model);
     <html>
         <head>

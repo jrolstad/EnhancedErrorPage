@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace Directus.CustomErrorPage.Mvc3.Errors.Models
+namespace EnhancedErrorPage.Mvc3.Errors.Models
 {
     public class ExceptionViewModel
     {
