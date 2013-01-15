@@ -3,11 +3,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using CustomErrorPage.Mvc3.Errors;
-using CustomErrorPage.Mvc3.Errors.Models;
+using Directus.CustomErrorPage.Mvc3.Errors;
+using Directus.CustomErrorPage.Mvc3.Errors.Models;
 using NUnit.Framework;
 
-namespace CustomErrorPage.Mvc.Test.Errors
+namespace Directus.CustomErrorPage.Mvc.Test.Errors
 {
     [TestFixture]
     public class ErrorPageFactoryTests

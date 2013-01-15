@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CustomErrorPage.Mvc3.Errors.Models;
+using Directus.CustomErrorPage.Mvc3.Errors.Models;
 
-namespace CustomErrorPage.Mvc3.Errors
+namespace Directus.CustomErrorPage.Mvc3.Errors
 {
     public class ErrorPageFactory
     {

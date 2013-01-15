@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Web;
-using CustomErrorPage.Mvc3.Errors.Models;
+using Directus.CustomErrorPage.Mvc3.Errors.Models;
 using NUnit.Framework;
 
-namespace CustomErrorPage.Mvc.Test.Errors.Models
+namespace Directus.CustomErrorPage.Mvc.Test.Errors.Models
 {
     [TestFixture]
     public class SearchableItemTests

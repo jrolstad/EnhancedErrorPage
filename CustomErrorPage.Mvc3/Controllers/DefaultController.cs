@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace CustomErrorPage.Mvc3.Controllers
+namespace Directus.CustomErrorPage.Mvc3.Controllers
 {
     public class DefaultController : Controller
     {

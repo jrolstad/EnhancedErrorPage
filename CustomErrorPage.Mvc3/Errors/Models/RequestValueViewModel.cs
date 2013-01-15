@@ -1,4 +1,4 @@
-﻿namespace CustomErrorPage.Mvc3.Errors.Models
+﻿namespace Directus.CustomErrorPage.Mvc3.Errors.Models
 {
     public class RequestValueViewModel
     {
