@@ -25,5 +25,8 @@
     <file src="CustomErrorPage.Mvc3\Errors\Models\SearchableItem.cs" target="Content\CustomErrorPage\Models" />
     
     <file src="CustomErrorPage.Mvc3\Views\Shared\Error.cshtml" target="Content\Views\Shared" />
+
+    <file src="CustomErrorPage.Mvc3\Views\Shared\Error.cshtml" target="Content\Views\Shared\Error.cshtml.eep" />
+
   </files>
 </package>
