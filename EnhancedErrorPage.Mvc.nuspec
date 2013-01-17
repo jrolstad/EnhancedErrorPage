@@ -9,7 +9,7 @@
     <description>Replacement for the yellow screen of death that gives more context</description>
     <copyright>Copyright 2013</copyright>
     <tags>errorpage error mvc exception</tags>
-    <projectUrl>https://github.com/jrolstad/customerrorpage</projectUrl>
+    <projectUrl>https://github.com/jrolstad/EnhancedErrorPage</projectUrl>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
