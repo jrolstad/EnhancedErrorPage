@@ -13,18 +13,26 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
-  </metadata>
-   <dependencies>
+	<dependencies>
       <dependency id="Microsoft.AspNet.Mvc" version="3.0.20105.1" />
    </dependencies>
+  </metadata>
+  
   <files>
+	<file src="NugetTools\Install.ps1" target="Tools" />
+  
     <file src="EnhancedErrorPage.Mvc3\Errors\ErrorPageFactory.cs" target="Content\EnhancedErrorPage" />
-    <file src="EnhancedErrorPage.Mvc3\Errors\Models\ErrorViewModel.cs" target="Content\EnhancedErrorPage\Models" />
     <file src="EnhancedErrorPage.Mvc3\Errors\Models\ErrorViewModel.cs" target="Content\EnhancedErrorPage\Models" />
     <file src="EnhancedErrorPage.Mvc3\Errors\Models\ExceptionViewModel.cs" target="Content\EnhancedErrorPage\Models" />
     <file src="EnhancedErrorPage.Mvc3\Errors\Models\RequestValueViewModel.cs" target="Content\EnhancedErrorPage\Models" />
     <file src="EnhancedErrorPage.Mvc3\Errors\Models\SearchableItem.cs" target="Content\EnhancedErrorPage\Models" />
-    
     <file src="EnhancedErrorPage.Mvc3\Views\Shared\Error.cshtml" target="Content\Views\Shared" />
+	
+	<file src="EnhancedErrorPage.Mvc3\Errors\ErrorPageFactory.cs" target="Content\EnhancedErrorPage\ErrorPageFactory.cs.eep" />
+    <file src="EnhancedErrorPage.Mvc3\Errors\Models\ErrorViewModel.cs" target="Content\EnhancedErrorPage\Models\ErrorViewModel.cs.eep" />
+    <file src="EnhancedErrorPage.Mvc3\Errors\Models\ExceptionViewModel.cs" target="Content\EnhancedErrorPage\Models\ExceptionViewModel.cs.eep" />
+    <file src="EnhancedErrorPage.Mvc3\Errors\Models\RequestValueViewModel.cs" target="Content\EnhancedErrorPage\Models\RequestValueViewModel.cs.eep" />
+    <file src="EnhancedErrorPage.Mvc3\Errors\Models\SearchableItem.cs" target="Content\EnhancedErrorPage\Models\SearchableItem.cs.eep" />
+	<file src="EnhancedErrorPage.Mvc3\Views\Shared\Error.cshtml" target="Content\Views\Shared\Error.cshtml.eep" />
   </files>
 </package>
