@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directus.CustomErrorPage.MVC.nuspec = Directus.CustomErrorPage.MVC.nuspec
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedErrorPage.Demo", "EnhancedErrorPage.Demo\EnhancedErrorPage.Demo.csproj", "{33FB780A-7152-47B2-B80B-87AF44E77BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{6B9CEEDB-7157-4204-86BE-F43B2F686735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B9CEEDB-7157-4204-86BE-F43B2F686735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9CEEDB-7157-4204-86BE-F43B2F686735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FB780A-7152-47B2-B80B-87AF44E77BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FB780A-7152-47B2-B80B-87AF44E77BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FB780A-7152-47B2-B80B-87AF44E77BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FB780A-7152-47B2-B80B-87AF44E77BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

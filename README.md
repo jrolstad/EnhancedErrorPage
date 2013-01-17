@@ -8,6 +8,7 @@ This is meant to be a replacement for the standard 'Yellow Screen of Death' seen
 Some of the features are:
 
 + Searchability: The Exception messages, sources, and stack traces all are links that search for that text on Google
++ Stack Trace: The Stack Trace & Exception stack is inverted to give better readability and flow
 + Server Details: Information such as the server name, time, and user context are shown
 + Server Variables
 + Request Parameters
